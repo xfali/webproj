@@ -1,0 +1,12 @@
+{
+  "project": "PROJECT-NAME",
+  "module": "github.com/USER-ORG-NAME/REPO-NAME",
+  "app": [
+    "YOUR-APP"
+  ],
+  "pkg": [
+    "YOUR-PACKAGE"
+  ],
+  "internalApp": [],
+  "internalPkg": []
+}
