@@ -9,22 +9,26 @@ import (
     "github.com/xfali/webproj/internal/pkg/value"
 )
 
-type Initializer func(src, target string, ctx *value.Context) error
-
-var gInitializers = []Initializer{
-    ProjectInitializer,
-    MakeFileInitializer,
-    AppInitializer,
-    PackageInitializer,
-    InternalInitializer,
+type Initializer interface {
+    PreInit(ctx *value.Context) error
+    Init(src, target string, ctx *value.Context) error
+    PostInit(src, target string, ctx *value.Context) error
 }
 
-func Initialize(src, target string, ctx *value.Context) error {
-    for i := range gInitializers {
-        err := gInitializers[i](src, target, ctx)
-        if err != nil {
-            return err
-        }
+var gInitializers = []Initializer{
+    NewProjectInitializer(),
+}
+
+func Initialize(src, target string, ctx *value.Context) (err error) {
+    initializer := NewProjectInitializer()
+    err = initializer.PreInit(ctx)
+    if err != nil {
+        return
     }
-    return nil
+    err = initializer.Init(src, target, ctx)
+    if err != nil {
+        return
+    }
+    err = initializer.PostInit(src, target, ctx)
+    return
 }
