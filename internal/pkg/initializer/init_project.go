@@ -78,10 +78,10 @@ func (initer *ProjectInitializer) PostInit(src, target string, ctx *value.Contex
                     return os.Rename(originPath, *srcPath)
                 } else {
                     *srcPath = ""
-                    err := os.RemoveAll(originPath)
-                    if err != nil {
-                        return err
-                    }
+                    //err := os.RemoveAll(originPath)
+                    //if err != nil {
+                    //    return err
+                    //}
                     return filepath.SkipDir
                 }
             }
