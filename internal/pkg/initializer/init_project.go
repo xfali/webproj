@@ -32,6 +32,10 @@ func ProjectInitializer(src, target string, ctx *value.Context) error {
                 return tpltool.CopyFile(srcPath, destPath)
             }
         } else {
+            dirName := filepath.Base(srcPath)
+            if ctx.IgnoreMap[dirName] {
+                return filepath.SkipDir
+            }
             err := tpltool.SafeMkdir(destPath)
             if err != nil {
                 return err

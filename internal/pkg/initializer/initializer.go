@@ -5,7 +5,9 @@
 
 package initializer
 
-import "github.com/xfali/webproj/internal/pkg/value"
+import (
+    "github.com/xfali/webproj/internal/pkg/value"
+)
 
 type Initializer func(src, target string, ctx *value.Context) error
 

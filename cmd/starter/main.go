@@ -17,6 +17,7 @@ func main() {
     conf := flag.String("f", "value.json", "config file")
     src := flag.String("s", "./assets/project-layout", "source template dir")
     target := flag.String("o", ".", "output dir")
+    ignore := flag.String("i", ".git", "ignore dir, eg: .git|.idea")
     flag.Parse()
 
     ctx := value.NewContext(*conf)
@@ -24,7 +25,7 @@ func main() {
         os.Exit(-1)
     }
 
-
+    ctx.AddIgnore(*ignore)
     err := initializer.Initialize(*src, *target, ctx)
     if err != nil {
         log.Fatal(err)

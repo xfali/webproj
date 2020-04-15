@@ -9,14 +9,21 @@ import (
     "encoding/json"
     "io/ioutil"
     "log"
+    "strings"
 )
 
 type Context struct {
     Value Value
+
+    IgnoreMap map[string]bool
 }
 
 func NewContext(valueFile string) *Context {
     ret := Context{
+        IgnoreMap: map[string]bool{
+            ".git":  true,
+            ".idea": true,
+        },
     }
     err := ret.ReadValue(valueFile)
     if err != nil {
@@ -31,4 +38,12 @@ func (c *Context) ReadValue(valueFile string) error {
         return err
     }
     return json.Unmarshal(b, &c.Value)
+}
+
+func (c *Context) AddIgnore(ig string) {
+    list := strings.Split(ig, "|")
+    for _, v := range list {
+        v = strings.TrimSpace(v)
+        c.IgnoreMap[v] = true
+    }
 }

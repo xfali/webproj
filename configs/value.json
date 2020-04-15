@@ -1,13 +1,9 @@
 {
   "project": "PROJECT-NAME",
   "module": "github.com/USER-ORG-NAME/REPO-NAME",
-  "app": [
-    "YOUR-APP"
-  ],
-  "pkg": [
-    "YOUR-PACKAGE"
-  ],
-  "internalApp": [],
-  "internalPkg": [],
+  "publicApp": "YOUR-APP",
+  "publicPkg": "YOUR-PACKAGE",
+  "privateApp": "",
+  "privatePkg": "",
   "fileComment": "// Copyright (C) 2020, YOUR-ORG-NAME.\n// @author YOUR-NAME\n// @version YOUR-VERSION\n// Description: \n\n"
 }
