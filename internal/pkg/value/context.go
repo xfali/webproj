@@ -21,7 +21,7 @@ const (
 )
 
 type Context struct {
-    Value Value
+    Value map[string]interface{}
 
     IgnoreMap map[string]bool
     DirMap    map[string]string
@@ -29,6 +29,7 @@ type Context struct {
 
 func NewContext(valueFile string) *Context {
     ret := Context{
+        Value: map[string]interface{}{},
         IgnoreMap: map[string]bool{
             ".git":  true,
             ".idea": true,
@@ -52,10 +53,10 @@ func (c *Context) ReadValue(valueFile string) error {
         return err
     }
 
-    c.DirMap[PublicApp] = c.Value.PublicApp
-    c.DirMap[PublicPkg] = c.Value.PublicPkg
-    c.DirMap[PrivateApp] = c.Value.PrivateApp
-    c.DirMap[PrivatePkg] = c.Value.PrivateApp
+    c.DirMap[PublicApp] = c.Value["PublicApp"].(string)
+    c.DirMap[PublicPkg] = c.Value["PublicPkg"].(string)
+    c.DirMap[PrivateApp] = c.Value["PrivateApp"].(string)
+    c.DirMap[PrivatePkg] = c.Value["PrivateApp"].(string)
     return nil
 }
 

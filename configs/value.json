@@ -1,9 +1,9 @@
 {
-  "project": "PROJECT-NAME",
-  "module": "github.com/USER-ORG-NAME/REPO-NAME",
-  "publicApp": "YOUR-APP",
-  "publicPkg": "YOUR-PACKAGE",
-  "privateApp": "",
-  "privatePkg": "",
-  "fileComment": "// Copyright (C) 2020, YOUR-ORG-NAME.\n// @author YOUR-NAME\n// @version YOUR-VERSION\n// Description: \n\n"
+  "Project": "PROJECT-NAME",
+  "Module": "github.com/USER-ORG-NAME/REPO-NAME",
+  "PublicApp": "YOUR-APP",
+  "PublicPkg": "YOUR-PACKAGE",
+  "PrivateApp": "",
+  "PrivatePkg": "",
+  "FileComment": "// Copyright (C) 2020, YOUR-ORG-NAME.\n// @author YOUR-NAME\n// @version YOUR-VERSION\n// Description: \n\n"
 }

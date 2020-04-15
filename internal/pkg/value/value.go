@@ -12,13 +12,13 @@ import (
 )
 
 type Value struct {
-    Project     string `json:"project"`
-    Module      string `json:"module"`
-    PublicApp   string `json:"publicApp"`
-    PublicPkg   string `json:"publicPkg"`
-    PrivateApp  string `json:"privateApp"`
-    PrivatePkg  string `json:"privatePkg"`
-    FileComment string `json:"fileComment"`
+    Project     string `json:"Project"`
+    Module      string `json:"Module"`
+    PublicApp   string `json:"PublicApp"`
+    PublicPkg   string `json:"PublicPkg"`
+    PrivateApp  string `json:"PrivateApp"`
+    PrivatePkg  string `json:"PrivatePkg"`
+    FileComment string `json:"FileComment"`
 }
 
 func Read(path string) *Value {
