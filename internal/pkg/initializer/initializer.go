@@ -7,7 +7,7 @@ package initializer
 
 import "github.com/xfali/webproj/internal/pkg/value"
 
-type Initializer func(target string, v *value.Value) error
+type Initializer func(src, target string, ctx *value.Context) error
 
 var gInitializers = []Initializer{
     ProjectInitializer,
@@ -17,9 +17,9 @@ var gInitializers = []Initializer{
     InternalInitializer,
 }
 
-func Initialize(target string, v *value.Value) error {
+func Initialize(src, target string, ctx *value.Context) error {
     for i := range gInitializers {
-        err := gInitializers[i](target, v)
+        err := gInitializers[i](src, target, ctx)
         if err != nil {
             return err
         }

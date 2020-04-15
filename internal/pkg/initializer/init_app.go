@@ -7,6 +7,6 @@ package initializer
 
 import "github.com/xfali/webproj/internal/pkg/value"
 
-func AppInitializer(target string, v *value.Value) error {
+func AppInitializer(src, target string, ctx *value.Context) error {
     return nil
 }

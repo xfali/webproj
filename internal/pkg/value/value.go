@@ -18,6 +18,7 @@ type Value struct {
     Pkg         []string `json:"pkg"`
     InternalApp []string `json:"internalApp"`
     InternalPkg []string `json:"internalPkg"`
+    FileComment string   `json:"fileComment"`
 }
 
 func Read(path string) *Value {

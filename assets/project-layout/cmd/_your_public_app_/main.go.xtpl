@@ -1,0 +1,7 @@
+{{.Value.FileComment}}package main
+
+func main() {
+
+}
+
+

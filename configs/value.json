@@ -8,5 +8,6 @@
     "YOUR-PACKAGE"
   ],
   "internalApp": [],
-  "internalPkg": []
+  "internalPkg": [],
+  "fileComment": "// Copyright (C) 2020, YOUR-ORG-NAME.\n// @author YOUR-NAME\n// @version YOUR-VERSION\n// Description: \n\n"
 }
