@@ -37,13 +37,12 @@ func WalkFile(src, target string, handler func(src, target string) error) error 
 }
 
 func CopyTemplate(srcPath, destPath string, value interface{}) error {
-    tpl, err := template.ParseFiles(srcPath)
+    tpl := template.New(filepath.Base(srcPath)).Funcs(tplFuncs)
+    tpl = tpl.Funcs(sprig.FuncMap())
+    tpl, err := tpl.ParseFiles(srcPath)
     if err != nil {
         return err
     }
-
-    tpl = tpl.Funcs(tplFuncs)
-    tpl = tpl.Funcs(sprig.FuncMap())
 
     destPath = FormatTemplateName(destPath)
     dest, err := os.OpenFile(destPath, os.O_WRONLY|os.O_CREATE, 0644)

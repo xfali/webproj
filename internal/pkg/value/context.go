@@ -35,8 +35,9 @@ func NewContext(valueFile string) *Context {
     ret := Context{
         Value: map[string]interface{}{},
         IgnoreMap: map[string]bool{
-            ".git":  true,
-            ".idea": true,
+            ".git":     true,
+            ".idea":    true,
+            ".starter": true,
         },
         DirMap: map[string]string{},
     }

@@ -17,7 +17,7 @@ func main() {
     conf := flag.String("f", "value.json", "config file")
     src := flag.String("s", "./assets/project-layout", "source template dir")
     target := flag.String("o", ".", "output dir")
-    ignore := flag.String("i", ".git", "ignore file or dir, eg: .git|.idea")
+    ignore := flag.String("i", ".git|.starter", "ignore file or dir, eg: .git|.idea")
     flag.Parse()
 
     ctx := value.NewContext(*conf)
