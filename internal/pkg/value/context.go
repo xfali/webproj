@@ -11,6 +11,7 @@ import (
     "log"
     "path/filepath"
     "strings"
+    "text/template"
 )
 
 const (
@@ -18,6 +19,9 @@ const (
     PublicPkg  = "_your_public_lib_"
     PrivateApp = "_your_private_app_"
     PrivatePkg = "_your_private_lib_"
+
+    DirTemplatePrefix    = "_xtpl_"
+    DirTemplatePrefixLen = 6
 )
 
 type Context struct {
@@ -69,6 +73,34 @@ func (c *Context) AddIgnore(ig string) {
 }
 
 func (c *Context) DirMapper(dir string) (string, bool) {
-    v, ok := c.DirMap[filepath.Base(dir)]
-    return v, ok
+    //v, ok := c.DirMap[filepath.Base(dir)]
+    dir = filepath.Base(dir)
+    dirLen := len(dir)
+    if dirLen <= DirTemplatePrefixLen {
+        return "", false
+    }
+
+    if dir[:DirTemplatePrefixLen] == DirTemplatePrefix {
+        tplDir := dir[DirTemplatePrefixLen:]
+        vKeys := strings.Split(tplDir, "_")
+        if len(vKeys) == 1 || vKeys[0] != "Value" {
+            return "", true
+        }
+        templateStr := "{{"
+        for _, v := range vKeys {
+            templateStr += "." + v
+        }
+        templateStr += "}}"
+        tpl, err := template.New("").Option("missingkey=zero").Parse(templateStr)
+        if err != nil {
+            return "", true
+        }
+        b := strings.Builder{}
+        err = tpl.Execute(&b, c)
+        if err != nil {
+            return "", true
+        }
+        return b.String(), true
+    }
+    return "", false
 }
