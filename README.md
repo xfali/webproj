@@ -33,14 +33,15 @@ go get github.com/xfali/webproj/cmd/starter
 }
 ```
 ### 在项目模板中使用value
-1. 识别的模板文件后缀名为.xtpl
-2. 模板文件遵循go template规范
-3. 模板文件使用value： 
+1. 识别的模板文件后缀名为.xtpl;
+2. 模板文件遵循go template规范;
+3. 模板函数内置[sprig](https://github.com/Masterminds/sprig)，及一些内置自定义函数;
+4. 模板文件使用value： 
 ```
 {{.Value.Project}}
 {{.Value.YOUR_VALUE}}
 ```
-4. 目录使用value： 
+5. 目录使用value： 
 
 模板项目中目录以_xtpl_开头的目录将自动解析为Value中定义的值：
 ```

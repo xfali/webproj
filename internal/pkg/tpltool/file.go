@@ -6,6 +6,7 @@
 package tpltool
 
 import (
+    "github.com/Masterminds/sprig"
     xio "github.com/xfali/goutils/io"
     "html/template"
     "io"
@@ -40,6 +41,9 @@ func CopyTemplate(srcPath, destPath string, value interface{}) error {
     if err != nil {
         return err
     }
+
+    tpl = tpl.Funcs(tplFuncs)
+    tpl = tpl.Funcs(sprig.FuncMap())
 
     destPath = FormatTemplateName(destPath)
     dest, err := os.OpenFile(destPath, os.O_WRONLY|os.O_CREATE, 0644)
