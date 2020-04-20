@@ -7,6 +7,8 @@ package initializer
 
 import (
     "github.com/xfali/webproj/internal/pkg/value"
+    "strings"
+    "unicode"
 )
 
 type Initializer interface {
@@ -20,6 +22,9 @@ var gInitializers = []Initializer{
 }
 
 func Initialize(src, target string, ctx *value.Context) (err error) {
+    src = FormatPath(src)
+    target = FormatPath(target)
+
     initializer := NewProjectInitializer()
     err = initializer.PreInit(ctx)
     if err != nil {
@@ -31,4 +36,10 @@ func Initialize(src, target string, ctx *value.Context) (err error) {
     }
     err = initializer.PostInit(src, target, ctx)
     return
+}
+
+func FormatPath(src string) string {
+    return strings.TrimRightFunc(strings.TrimLeftFunc(src, unicode.IsSpace), func(r rune) bool {
+        return unicode.IsSpace(r) || r == '/' || r == '\\'
+    })
 }
